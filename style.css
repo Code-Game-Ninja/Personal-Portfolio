@@ -1,0 +1,64 @@
+html {
+    scroll-behavior: smooth;
+}
+
+.hero-image {
+    background-image: url('https://images.unsplash.com/photo-1571171637578-41bc2dd41cd2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    text-align: center;
+    padding: 0 20px;
+}
+
+/* Disable background-attachment */
+@media (max-width: 768px) {
+    .hero-image {
+        background-attachment: scroll;
+    }
+}
+
+.skill-bar {
+    transition: width 1.5s ease-in-out;
+}
+
+.project-card:hover {
+    transform: translateY(-10px);
+    transition: transform 0.3s ease;
+}
+
+.floating {
+    animation: floating 3s ease-in-out infinite;
+}
+
+@keyframes floating {
+    0% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-15px);
+    }
+
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+.text-gradient {
+    background: linear-gradient(90deg, #4f46e5, #9333ea);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.animated-text {
+    opacity: 0;
+    transform: translateY(20px);
+}

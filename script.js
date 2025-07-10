@@ -5,11 +5,31 @@ AOS.init({
     once: true
 });
 
-// Mobile menu toggle
-document.getElementById('mobile-menu-button').addEventListener('click', function () {
-    const menu = document.getElementById('mobile-menu');
-    menu.classList.toggle('hidden');
-});
+// Side-drawer Mobile menu toggle
+const mobileMenuButton = document.getElementById('mobile-menu-button');
+const mobileMenu = document.getElementById('mobile-menu');
+const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
+const mobileMenuClose = mobileMenu ? mobileMenu.querySelector('.close-btn') : null;
+if (mobileMenuButton && mobileMenu && mobileMenuOverlay) {
+  function openMenu() {
+    console.log('Hamburger clicked: opening menu');
+    mobileMenu.classList.add('active');
+    mobileMenuOverlay.classList.add('active');
+    console.log('Classes after open:', mobileMenu.className, mobileMenuOverlay.className);
+  }
+  function closeMenu() {
+    mobileMenu.classList.remove('active');
+    mobileMenuOverlay.classList.remove('active');
+    console.log('Menu closed');
+  }
+  mobileMenuButton.addEventListener('click', openMenu);
+  if (mobileMenuClose) mobileMenuClose.addEventListener('click', closeMenu);
+  mobileMenuOverlay.addEventListener('click', closeMenu);
+  // Close menu when a link is clicked
+  mobileMenu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', closeMenu);
+  });
+}
 
 // Hero section GSAP animation
 gsap.from("#hero-title", {
@@ -35,32 +55,83 @@ gsap.from("#hero-button", {
     ease: "power3.out"
 });
 
-// Animate skill bars when they come into view
-const skillBars = document.querySelectorAll('.skill-bar');
+// Scroll Progress Bar
+window.addEventListener('scroll', () => {
+  const scrollProgress = document.getElementById('scroll-progress');
+  const scrollTop = window.scrollY;
+  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+  const scrollPercent = (scrollTop / docHeight) * 100;
+  scrollProgress.style.width = scrollPercent + '%';
+});
 
-const animateSkillBars = () => {
-    skillBars.forEach(bar => {
-        const rect = bar.getBoundingClientRect();
-        if (rect.top <= window.innerHeight - 100) {
-            const width = bar.getAttribute('data-width');
-            gsap.to(bar, {
-                width: width,
-                duration: 1.5,
-                ease: "power3.out"
-            });
-        }
-    });
-};
+// Ripple Effect for Buttons
+function createRipple(event) {
+  const button = event.currentTarget;
+  const circle = document.createElement('span');
+  const diameter = Math.max(button.clientWidth, button.clientHeight);
+  const radius = diameter / 2;
+  circle.style.width = circle.style.height = `${diameter}px`;
+  circle.style.left = `${event.clientX - button.getBoundingClientRect().left - radius}px`;
+  circle.style.top = `${event.clientY - button.getBoundingClientRect().top - radius}px`;
+  circle.classList.add('ripple-effect');
+  button.appendChild(circle);
+  setTimeout(() => circle.remove(), 600);
+}
+document.querySelectorAll('.ripple').forEach(btn => {
+  btn.addEventListener('click', createRipple);
+});
 
-// Initialize skill bars with 0 width
+// Typing Animation for Hero Subtitle
+function typeText(element, text, speed = 60) {
+  let i = 0;
+  function typing() {
+    if (i < text.length) {
+      element.textContent += text.charAt(i);
+      i++;
+      setTimeout(typing, speed);
+    }
+  }
+  element.textContent = '';
+  typing();
+}
 document.addEventListener('DOMContentLoaded', () => {
-    skillBars.forEach(bar => {
-        bar.style.width = '0%';
-    });
+  const subtitle = document.querySelector('#hero-subtitle h2');
+  if (subtitle) {
+    typeText(subtitle, 'Frontend Web Developer');
+  }
+});
 
-    // Then animate them when scrolled into view
-    window.addEventListener('scroll', animateSkillBars);
-    animateSkillBars(); // Check on load in case some are already in view
+// Animate Skill Bars with IntersectionObserver
+const skillBars = document.querySelectorAll('.skill-bar');
+const skillObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const bar = entry.target;
+      const width = bar.getAttribute('data-width');
+      bar.style.width = width;
+      bar.style.transition = 'width 1.5s cubic-bezier(.4,0,.2,1)';
+      skillObserver.unobserve(bar);
+    }
+  });
+}, { threshold: 0.5 });
+skillBars.forEach(bar => {
+  bar.style.width = '0%';
+  skillObserver.observe(bar);
+});
+
+// Card Entrance Animation
+const cards = document.querySelectorAll('.project-card, .material-card');
+const cardObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('card-in-view');
+      cardObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.2 });
+cards.forEach(card => {
+  card.classList.remove('card-in-view');
+  cardObserver.observe(card);
 });
 
 // Text animation for about section
@@ -86,10 +157,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         const targetElement = document.querySelector(targetId);
 
         if (targetElement) {
-            // Close mobile menu if open
-            const mobileMenu = document.getElementById('mobile-menu');
-            mobileMenu.classList.add('hidden');
-
             // Scroll to target
             window.scrollTo({
                 top: targetElement.offsetTop - 80,
@@ -117,3 +184,4 @@ gsap.to(heroTitle, {
     yoyo: true,
     ease: "none"
 });
+gsap.registerPlugin(ScrollTrigger);

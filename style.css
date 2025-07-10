@@ -1,5 +1,22 @@
 html {
     scroll-behavior: smooth;
+    font-size: 20px;
+}
+
+body {
+    font-size: 1.1rem;
+}
+
+h1 {
+    font-size: 2.5rem;
+}
+
+h2 {
+    font-size: 2rem;
+}
+
+h3 {
+    font-size: 1.5rem;
 }
 
 .hero-image {
@@ -61,4 +78,449 @@ html {
 .animated-text {
     opacity: 0;
     transform: translateY(20px);
+}
+
+/* Button & Link Hover Effects */
+.bg-indigo-600,
+.border-indigo-600,
+button,
+input[type="submit"],
+.btn {
+    transition: background 0.3s, color 0.3s, box-shadow 0.3s, transform 0.2s;
+}
+.bg-indigo-600:hover,
+button:hover,
+input[type="submit"]:hover,
+.btn:hover {
+    background: #4f46e5 !important;
+    color: #fff !important;
+    box-shadow: 0 4px 16px rgba(60,60,60,0.16);
+    transform: translateY(-2px) scale(1.04);
+}
+
+/* Card Hover Animation */
+.project-card,
+.material-card,
+.shadow-xl {
+    transition: box-shadow 0.3s, transform 0.3s;
+}
+.project-card:hover,
+.material-card:hover,
+.shadow-xl:hover {
+    box-shadow: 0 8px 32px rgba(60,60,60,0.18);
+    transform: translateY(-8px) scale(1.03);
+}
+
+/* Profile Image Floating Animation (already present, but reinforce) */
+.floating {
+    animation: floating 3s ease-in-out infinite;
+}
+@keyframes floating {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-15px); }
+    100% { transform: translateY(0px); }
+}
+
+/* Section Title Animation */
+[data-aos="fade-down"],
+[data-aos="fade-right"],
+[data-aos="fade-left"] {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 1s forwards;
+    animation-delay: 0.2s;
+}
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+/* Animated underline for nav links */
+nav a {
+    position: relative;
+    transition: color 0.3s;
+}
+nav a::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 2px;
+    background: #6366f1;
+    transition: width 0.3s;
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+}
+nav a:hover::after {
+    width: 100%;
+}
+
+/* Ripple Effect for Buttons */
+.ripple {
+  position: relative;
+  overflow: hidden;
+}
+.ripple-effect {
+  position: absolute;
+  border-radius: 50%;
+  transform: scale(0);
+  animation: ripple-animation 0.6s linear;
+  background: rgba(99,102,241,0.3);
+  pointer-events: none;
+  z-index: 2;
+}
+@keyframes ripple-animation {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+/* Scroll Progress Bar */
+#scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 4px;
+  background: linear-gradient(90deg, #4f46e5, #06b6d4);
+  z-index: 9999;
+  transition: width 0.2s;
+}
+
+/* Animated Gradient Text */
+.animated-gradient {
+  background: linear-gradient(270deg, #4f46e5, #06b6d4, #9333ea, #4f46e5);
+  background-size: 600% 600%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: gradientMove 4s ease-in-out infinite;
+}
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Floating/Pulsing Icons */
+.floating-icon {
+  animation: floatingIcon 2.5s ease-in-out infinite;
+}
+@keyframes floatingIcon {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px) scale(1.1); }
+}
+.pulse-icon {
+  animation: pulseIcon 1.5s infinite;
+}
+@keyframes pulseIcon {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+  100% { transform: scale(1); }
+}
+
+/* Card Hover Overlay */
+.project-card {
+  position: relative;
+  overflow: hidden;
+}
+.project-card .card-overlay {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(79,70,229,0.85);
+  color: #fff;
+  opacity: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.3s;
+  z-index: 3;
+  padding: 2rem;
+  text-align: center;
+}
+.project-card:hover .card-overlay {
+  opacity: 1;
+}
+.card-overlay a {
+  margin: 0 0.25rem;
+  font-size: 1rem;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(60,60,60,0.10);
+  transition: background 0.3s, color 0.3s, transform 0.2s;
+  display: inline-block;
+}
+.card-overlay a.bg-white {
+  background: #fff;
+  color: #4f46e5 !important;
+}
+.card-overlay a.bg-white:hover {
+  background: #e0e7ff;
+  color: #312e81 !important;
+  transform: translateY(-2px) scale(1.04);
+}
+.card-overlay a.bg-indigo-600 {
+  background: #4f46e5;
+  color: #fff !important;
+}
+.card-overlay a.bg-indigo-600:hover {
+  background: #3730a3;
+  color: #fff !important;
+  transform: translateY(-2px) scale(1.04);
+}
+
+/* Contact Form Modern Styles */
+.contact-form {
+  background: #fff;
+  border-radius: 1.25rem;
+  box-shadow: 0 4px 24px rgba(60,60,60,0.10);
+  padding: 2.5rem 2rem;
+  max-width: 500px;
+  margin: 0 auto;
+  transition: box-shadow 0.3s;
+}
+.contact-form:hover {
+  box-shadow: 0 8px 32px rgba(60,60,60,0.16);
+}
+.contact-form label {
+  font-weight: 600;
+  color: #4f46e5;
+  margin-bottom: 0.5rem;
+  display: block;
+  letter-spacing: 0.5px;
+}
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1.5px solid #e0e7ff;
+  border-radius: 0.75rem;
+  margin-bottom: 1.25rem;
+  font-size: 1rem;
+  background: #f8fafc;
+  color: #22223b;
+  transition: border 0.2s, box-shadow 0.2s;
+  outline: none;
+  resize: none;
+}
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border-color: #4f46e5;
+  box-shadow: 0 0 0 2px #a5b4fc44;
+  background: #fff;
+}
+.contact-form button[type="submit"] {
+  width: 100%;
+  margin-top: 0.5rem;
+  font-size: 1.1rem;
+  padding: 0.9rem 0;
+  border-radius: 2rem;
+  background: linear-gradient(90deg, #4f46e5, #06b6d4);
+  color: #fff;
+  font-weight: 700;
+  letter-spacing: 1px;
+  box-shadow: 0 2px 8px rgba(60,60,60,0.10);
+  border: none;
+  transition: background 0.3s, box-shadow 0.3s, transform 0.2s;
+}
+.contact-form button[type="submit"]:hover {
+  background: linear-gradient(90deg, #3730a3, #0ea5e9);
+  box-shadow: 0 4px 16px rgba(60,60,60,0.16);
+  transform: translateY(-2px) scale(1.03);
+}
+
+/* Modern Footer Styles */
+footer {
+  background: linear-gradient(90deg, #18181b 0%, #312e81 100%);
+  color: #fff;
+  padding: 3rem 0 2rem 0;
+  border-radius: 1.25rem 1.25rem 0 0;
+  box-shadow: 0 -2px 16px rgba(60,60,60,0.10);
+  margin-top: 3rem;
+}
+footer h2 {
+  color: #fff;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+footer p {
+  color: #f3f4f6;
+  margin-top: 0.5rem;
+}
+footer ul {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  margin-top: 1rem;
+}
+footer ul li a {
+  color: #fff;
+  font-weight: 600;
+  transition: color 0.3s, text-shadow 0.3s;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.18);
+  font-size: 1.25rem;
+}
+footer ul li a:hover {
+  color: #38bdf8;
+  text-shadow: 0 2px 8px #18181b;
+}
+@media (max-width: 600px) {
+  footer ul {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+  }
+  footer {
+    border-radius: 1.25rem 1.25rem 0 0;
+    padding: 2rem 0 1rem 0;
+  }
+}
+@media (max-width: 900px) {
+  .container, .contact-form {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  .hero-image {
+    min-height: 60vh;
+    padding: 2rem 0.5rem;
+  }
+}
+@media (max-width: 768px) {
+  .hero-image {
+    flex-direction: column;
+    min-height: 50vh;
+    padding: 2rem 0.5rem;
+  }
+  .about-card, .material-card, .timeline-card, .contact-form {
+    padding: 1rem;
+  }
+  nav ul {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+  .project-card, .material-card {
+    margin-bottom: 2rem;
+  }
+  .footer {
+    padding: 1.5rem 0 1rem 0;
+  }
+}
+@media (max-width: 600px) {
+  .hero-image h1 {
+    font-size: 2rem !important;
+  }
+  .hero-image h2 {
+    font-size: 1.25rem !important;
+  }
+  .container, .contact-form {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+  .contact-form {
+    padding: 1.25rem 0.5rem;
+    max-width: 100%;
+  }
+  .project-card, .material-card {
+    padding: 1rem 0.5rem;
+  }
+  .footer {
+    border-radius: 1.25rem 1.25rem 0 0;
+    padding: 1rem 0 0.5rem 0;
+  }
+  footer ul {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+  }
+}
+@media (min-width: 1024px) {
+  nav ul li a {
+    font-size: 1.45rem;
+    letter-spacing: 0.11em;
+  }
+}
+
+/* Side-drawer Mobile Nav */
+#mobile-menu {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 80vw;
+  max-width: 320px;
+  background: #fff;
+  box-shadow: 2px 0 16px rgba(60,60,60,0.10);
+  z-index: 10000;
+  transform: translateX(-100%);
+  transition: transform 0.35s cubic-bezier(.4,0,.2,1);
+  flex-direction: column;
+  padding-top: 4.5rem;
+}
+#mobile-menu.active {
+  display: flex;
+  transform: translateX(0);
+}
+#mobile-menu .close-btn {
+  position: absolute;
+  top: 1.2rem;
+  right: 1.2rem;
+  font-size: 2rem;
+  color: #4f46e5;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 1100;
+}
+#mobile-menu ul {
+  width: 100%;
+}
+#mobile-menu ul li a {
+  width: 100%;
+  padding: 1rem 2rem;
+  font-size: 1.2rem;
+  color: #312e81;
+  border-radius: 0.5rem;
+  transition: background 0.2s, color 0.2s;
+  display: block;
+}
+#mobile-menu ul li a:hover {
+  background: #f3f4f6;
+  color: #4f46e5;
+}
+#mobile-menu-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(24,24,27,0.45);
+  z-index: 9999;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
+}
+#mobile-menu-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+@media (min-width: 768px) {
+  #mobile-menu, #mobile-menu-overlay {
+    display: none !important;
+  }
+}
+@font-face {
+  font-family: 'Stay and Shine';
+  src: url('fonts/Stay and Shine.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+body, h1, h2, h3, h4, h5, h6 {
+  font-family: 'Stay and Shine', cursive !important;
+  letter-spacing: 0.06em;
+}
+nav ul li a {
+  font-size: 1.28rem;
+  letter-spacing: 0.08em;
 }

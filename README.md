@@ -21,12 +21,11 @@ A modern, responsive personal portfolio website for Chirag Mishra, built with HT
 ```
 Portfolio/
   ├── CV/                  # Resume PDF
-  ├── fonts/               # Custom font files (Stay and Shine, Rustico)
-  ├── img/                 # Images (profile, project screenshots, logo, etc.)
+  ├── fonts/               # Custom font files (Stay and Shine)
+  ├── img/                 # Images (profile, project screenshots, etc.)
   ├── index.html           # Main HTML file
   ├── style.css            # Main CSS file (custom + Tailwind overrides)
   ├── script.js            # Main JavaScript file (animations, interactivity)
-  ├── favicon.ico          # Favicon for browser tab
   └── README.md            # This file
 ```
 

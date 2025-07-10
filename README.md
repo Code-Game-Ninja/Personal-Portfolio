@@ -1,7 +1,3 @@
-Sure! Here's a **detailed and professional `README.md`** for your portfolio repository, ready to be used on GitHub:
-
----
-
 # 🚀 Chirag Mishra – Personal Portfolio Website
 
 **Live Demo** 👉 [https://code-game-ninja.github.io/Personal-Portfolio/](https://code-game-ninja.github.io/Personal-Portfolio/)
@@ -115,11 +111,15 @@ The form uses **Formspree**:
 
 ## 📸 Preview Screenshots
 
-> You can add these manually:
-
 * Home Page with profile image
+<img width="1902" height="906" alt="image" src="https://github.com/user-attachments/assets/edf37f40-8552-477f-877e-95aab1f6e9f9" />
+
 * Projects Section with hover overlays
+<img width="1896" height="892" alt="image" src="https://github.com/user-attachments/assets/c6739594-fde8-48a6-99d7-11c18722a7ea" />
+
 * Responsive view on mobile
+<img width="320" height="694" alt="image" src="https://github.com/user-attachments/assets/a00fe45b-681d-4ecd-9fbb-6ed939858344" />
+
 
 
 

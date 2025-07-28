@@ -530,3 +530,47 @@ nav ul li a {
   font-size: 1.28rem;
   letter-spacing: 0.08em;
 }
+
+/* Hide extra projects by default */
+.extra-project {
+  display: none;
+}
+/* Show extra projects when parent has .show-all-projects */
+.show-all-projects .extra-project {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.5s cubic-bezier(.4,0,.2,1), transform 0.5s cubic-bezier(.4,0,.2,1);
+}
+.show-all-projects .extra-project:not(.project-visible) {
+  opacity: 0;
+  transform: translateY(40px);
+  pointer-events: none;
+  overflow: hidden;
+}
+
+/* Hide extra certificates by default */
+.extra-certificate {
+  display: block;
+  opacity: 0;
+  transform: translateY(40px);
+  pointer-events: none;
+  transition: opacity 0.5s cubic-bezier(.4,0,.2,1), transform 0.5s cubic-bezier(.4,0,.2,1);
+  height: 0;
+  overflow: hidden;
+}
+.show-all-certificates .extra-certificate.certificate-visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+  height: auto;
+  transition: opacity 0.5s cubic-bezier(.4,0,.2,1), transform 0.5s cubic-bezier(.4,0,.2,1);
+  overflow: visible;
+}
+.show-all-certificates .extra-certificate:not(.certificate-visible) {
+  opacity: 0;
+  transform: translateY(40px);
+  pointer-events: none;
+  height: 0;
+  overflow: hidden;
+}

@@ -185,3 +185,86 @@ gsap.to(heroTitle, {
     ease: "none"
 });
 gsap.registerPlugin(ScrollTrigger);
+
+// Ensure correct initial state for extra projects (run immediately)
+(function() {
+  const projectsGrid = document.querySelector('#projects .grid');
+  const extraProjects = projectsGrid ? projectsGrid.querySelectorAll('.extra-project') : [];
+  if (projectsGrid && extraProjects.length) {
+    if (projectsGrid.classList.contains('show-all-projects')) {
+      extraProjects.forEach((proj) => proj.classList.add('project-visible'));
+    } else {
+      extraProjects.forEach((proj) => proj.classList.remove('project-visible'));
+    }
+  }
+})();
+
+document.addEventListener('DOMContentLoaded', function() {
+  // Toggle All Projects functionality
+  const viewAllBtn = document.getElementById('view-all-projects-btn');
+  const projectsGrid = viewAllBtn && viewAllBtn.closest('.container').querySelector('.grid');
+  const extraProjects = projectsGrid ? projectsGrid.querySelectorAll('.extra-project') : [];
+  if (projectsGrid && extraProjects.length) {
+    if (projectsGrid.classList.contains('show-all-projects')) {
+      extraProjects.forEach((proj, i) => {
+        setTimeout(() => {
+          proj.classList.add('project-visible');
+        }, i * 100);
+      });
+    } else {
+      extraProjects.forEach((proj, i) => {
+        setTimeout(() => {
+          proj.classList.remove('project-visible');
+        }, i * 50);
+      });
+    }
+  }
+  // Toggle All Projects functionality
+  if (viewAllBtn && projectsGrid) {
+    viewAllBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      const isShowing = projectsGrid.classList.toggle('show-all-projects');
+      if (isShowing) {
+        viewAllBtn.textContent = 'Show Less';
+        extraProjects.forEach((proj, i) => {
+          setTimeout(() => {
+            proj.classList.add('project-visible');
+          }, i * 100);
+        });
+      } else {
+        viewAllBtn.textContent = 'View All Projects';
+        extraProjects.forEach((proj, i) => {
+          setTimeout(() => {
+            proj.classList.remove('project-visible');
+          }, i * 50);
+        });
+      }
+    });
+  }
+
+  // Toggle All Certificates functionality
+  const viewAllCertBtn = document.getElementById('view-all-certificates-btn');
+  const certificatesGrid = viewAllCertBtn && viewAllCertBtn.closest('.container').querySelector('.grid');
+  const extraCertificates = certificatesGrid ? certificatesGrid.querySelectorAll('.extra-certificate') : [];
+  if (viewAllCertBtn && certificatesGrid) {
+    viewAllCertBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      const isShowing = certificatesGrid.classList.toggle('show-all-certificates');
+      if (isShowing) {
+        viewAllCertBtn.textContent = 'Show Less';
+        extraCertificates.forEach((cert, i) => {
+          setTimeout(() => {
+            cert.classList.add('certificate-visible');
+          }, i * 100);
+        });
+      } else {
+        viewAllCertBtn.textContent = 'View All Certificates';
+        extraCertificates.forEach((cert, i) => {
+          setTimeout(() => {
+            cert.classList.remove('certificate-visible');
+          }, i * 50);
+        });
+      }
+    });
+  }
+});
